@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Invstigate') {
+            steps {
+                echo "Investigating what's available"
+                sh "which docker"
+                sh "which kubectl"
+                sh "which unzip"
+                echo "Done"
+            }
+        }
+    }
+}
