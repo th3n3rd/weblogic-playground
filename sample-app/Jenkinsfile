@@ -1,13 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Invstigate') {
+        stage("Build") {
+            agent {
+                docker { image "openjdk:8u312-jdk" }
+            }
             steps {
-                echo "Investigating what's available"
-                sh "which docker"
-                sh "which kubectl"
-                sh "which unzip"
-                echo "Done"
+                dir("sample-app") {
+                    sh "./mvnw clean package -DskipTests"
+                }
             }
         }
     }
